@@ -44,7 +44,6 @@ public class AlienInvadersWorld {
     private static AlienInvadersWorld instance = null;
 
     public List<Projectile> getProjectiles() {
-
         return projectiles;
     }
     public List<Shield> getShields() { return shields; }
@@ -58,7 +57,7 @@ public class AlienInvadersWorld {
         this.aliens=new ArrayList<Alien>();
         this.projectiles=new ArrayList<Projectile>();
         this.shields=new ArrayList<Shield>();
-        this.clear();
+        clear();
     }
 
     public static AlienInvadersWorld getInstance() {
@@ -101,7 +100,7 @@ public class AlienInvadersWorld {
 
             for (Projectile projectile: projectiles) {
                 projectile.move();
-                if (getBounds().overlaps(projectile.getBounds())) {
+                if (!getBounds().overlaps(projectile.getBounds())) {
                     projectile.kill();
                 }
             }
