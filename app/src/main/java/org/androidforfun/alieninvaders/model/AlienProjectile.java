@@ -9,10 +9,19 @@ public class AlienProjectile extends Projectile {
     }
 
     public void move() {
-        moveBy(0,1);
+        moveBy(0, 1);
         //y += 1;
         //distanceTraveled += 1;
         //if (distanceTraveled > maxDistance)
         //    kill();
+    }
+
+    public boolean equals(Object object) {
+        if (super.equals(object)) {
+            if (object instanceof AlienProjectile) {
+                return true;
+            }
+        }
+        return false;
     }
 }

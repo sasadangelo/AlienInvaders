@@ -18,4 +18,16 @@ public abstract class Projectile extends Actor {
     public boolean isInactive() {
         return !this.active;
     }
+
+    public boolean equals(Object object) {
+        if (super.equals(object)) {
+            if (object instanceof Projectile) {
+                Projectile projectile = (Projectile) object;
+                if (active==projectile.active) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

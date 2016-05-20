@@ -14,7 +14,6 @@ public class TextStyle {
     public enum Style {
         NORMAL,
         BOLD,
-        UNDERLINE,
         ITALIC
     }
 

@@ -12,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 
 import org.androidforfun.alieninvaders.framework.Graphics;
 import org.androidforfun.alieninvaders.framework.Pixmap;
@@ -137,6 +138,18 @@ public class AndroidGraphics implements Graphics {
         Paint paint = new Paint();
         paint.setColor(style.getColor());
         paint.setTextSize(style.getTextSize());
+
+        Paint.Style androidStyle = null;
+        if (style.getStyle()==TextStyle.Style.BOLD) {
+            paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        } else if (style.getStyle()==TextStyle.Style.NORMAL) {
+            paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
+        } else if (style.getStyle()==TextStyle.Style.ITALIC) {
+            paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
+        } else {
+            paint.setTextAlign(Paint.Align.LEFT);
+        }
+
         Paint.Align align = null;
         if (style.getAlign()==TextStyle.Align.LEFT) {
             paint.setTextAlign(Paint.Align.LEFT);

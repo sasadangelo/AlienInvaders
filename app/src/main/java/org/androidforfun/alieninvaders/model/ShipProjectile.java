@@ -12,4 +12,13 @@ public class ShipProjectile extends Projectile {
         //if (distanceTraveled > maxDistance)
         //    kill();
     }
+
+    public boolean equals(Object object) {
+        if (super.equals(object)) {
+            if (object instanceof ShipProjectile) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

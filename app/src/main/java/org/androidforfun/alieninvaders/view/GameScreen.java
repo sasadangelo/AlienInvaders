@@ -5,6 +5,7 @@ import android.util.Log;
 import org.androidforfun.alieninvaders.framework.Pixmap;
 import org.androidforfun.alieninvaders.model.Alien;
 import org.androidforfun.alieninvaders.model.AlienInvadersWorld;
+import org.androidforfun.alieninvaders.model.AlienProjectile;
 import org.androidforfun.alieninvaders.model.BadAlien;
 import org.androidforfun.alieninvaders.model.GoodAlien;
 import org.androidforfun.alieninvaders.model.ShipProjectile;
@@ -20,6 +21,7 @@ import org.androidforfun.alieninvaders.model.Shield;
 import org.androidforfun.alieninvaders.model.UglyAlien;
 
 import java.util.EnumMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +37,8 @@ public class GameScreen extends Screen {
 
     private boolean isShipMovingLeft=false;
     private boolean isShipMovingRight=false;
+    private int shipMovingLeftPointer=-1;
+    private int shipMovingRightPointer=-1;
 
     private Map<AlienInvadersWorld.GameState, GameState> states = new EnumMap<AlienInvadersWorld.GameState, GameState>(AlienInvadersWorld.GameState.class);
 
@@ -101,7 +105,8 @@ public class GameScreen extends Screen {
             }
         }
 
-        if (AlienInvadersWorld.getInstance().getAliens().get(0).getX() != lastAlienXPosition) {
+        if (AlienInvadersWorld.getInstance().getAliens().size()>0 &&
+                AlienInvadersWorld.getInstance().getAliens().get(0).getX() != lastAlienXPosition) {
             if (alienMove) {
                 alienGood = Assets.alienGood2;
                 alienBad = Assets.alienBad2;
@@ -187,35 +192,58 @@ public class GameScreen extends Screen {
             int len = touchEvents.size();
             for(int i = 0; i < len; i++) {
                 TouchEvent event = touchEvents.get(i);
-                if(event.type == TouchEvent.TOUCH_UP) {
-                    if(event.x >= 5 && event.x < 55 && event.y >= 20 && event.y < 70) {
-                        if(Settings.soundEnabled)
-                            Assets.click.play(1);
-                        AlienInvadersWorld.getInstance().setState(AlienInvadersWorld.GameState.Paused);
-                        return;
-                    }
-                    // Finish move on left
-                    if(event.x >= 30 && event.x < 80 && event.y >= 425 && event.y < 475) {
-                        isShipMovingLeft=false;
-                    }
-                    // Finish move on right
-                    if(event.x >= 100 && event.x < 150 && event.y >= 425 && event.y < 475) {
-                        isShipMovingRight=false;
-                    }
-                }
-                if(event.type == TouchEvent.TOUCH_DOWN) {
-                    // Move ship on the left
-                    if(event.x >= 30 && event.x < 80 && event.y >= 425 && event.y < 475) {
-                        isShipMovingLeft=true;
-                    }
-                    // Move ship on the right
-                    if(event.x >= 100 && event.x < 150 && event.y >= 425 && event.y < 475) {
-                        isShipMovingRight=true;
-                    }
-                    // Shoot the aliens
-                    if(event.x >= 240 && event.x < 290 && event.y >= 425 && event.y < 475) {
-                        AlienInvadersWorld.getInstance().getShip().shoot();
-                    }
+                switch(event.type) {
+                    case TouchEvent.TOUCH_UP:
+                        // Finish move on left
+                        if (shipMovingLeftPointer==event.pointer) {
+                            isShipMovingLeft=false;
+                            shipMovingLeftPointer=-1;
+                        }
+                        // Finish move on right
+                        if (shipMovingRightPointer==event.pointer) {
+                            isShipMovingRight=false;
+                            shipMovingRightPointer=-1;
+                        }
+                        break;
+                    case TouchEvent.TOUCH_DRAGGED:
+                        if (shipMovingLeftPointer==event.pointer) {
+                            if(event.x < 30 || event.x > 80 || event.y < 425 || event.y >= 475) {
+                                isShipMovingLeft=false;
+                                shipMovingLeftPointer=-1;
+                            }
+                        }
+                        // Finish move on right
+                        if (shipMovingRightPointer==event.pointer) {
+                            if(event.x < 100 || event.x >= 150 || event.y < 425 || event.y >= 475) {
+                                isShipMovingRight=false;
+                                shipMovingRightPointer=-1;
+                            }
+                        }
+                        break;
+                    case TouchEvent.TOUCH_DOWN:
+                        if(event.x >= 5 && event.x < 55 && event.y >= 20 && event.y < 70) {
+                            if(Settings.soundEnabled)
+                                Assets.click.play(1);
+                            AlienInvadersWorld.getInstance().setState(AlienInvadersWorld.GameState.Paused);
+                            return;
+                        }
+                        // Move ship on the left
+                        if(event.x >= 30 && event.x < 80 && event.y >= 425 && event.y < 475) {
+                            isShipMovingLeft=true;
+                            shipMovingLeftPointer=event.pointer;
+                        }
+                        // Move ship on the right
+                        if(event.x >= 100 && event.x < 150 && event.y >= 425 && event.y < 475) {
+                            isShipMovingRight=true;
+                            shipMovingRightPointer=event.pointer;
+                        }
+                        // Shoot the aliens
+                        if(event.x >= 240 && event.x < 290 && event.y >= 425 && event.y < 475) {
+                            AlienInvadersWorld.getInstance().getShip().shoot();
+                            if(Settings.soundEnabled)
+                                Assets.laserCanon.play(1);
+                        }
+                        break;
                 }
             }
 
@@ -231,6 +259,11 @@ public class GameScreen extends Screen {
                 if(Settings.soundEnabled)
                     Assets.bitten.play(1);
             }
+            detectCollisions();
+            if (!AlienInvadersWorld.getInstance().getShip().isAlive()) {
+                AlienInvadersWorld.getInstance().setState(AlienInvadersWorld.GameState.GameOver);
+            }
+
             if(Settings.soundEnabled)
                 if (!Assets.musicInvaders.isPlaying()) {
                     Assets.musicInvaders.setLooping(true);
@@ -247,6 +280,41 @@ public class GameScreen extends Screen {
             g.drawPixmap(Assets.buttons, 100, 425, 0, 50, 51, 51); // right button
             g.drawPixmap(Assets.buttons, 240, 425, 0, 150, 51, 51); // down button
             drawAlienInvaders();
+            TextStyle style = new TextStyle();
+            style.setColor(0xffffffff);
+            style.setTextSize(14);
+            style.setStyle(TextStyle.Style.BOLD);
+            style.setAlign(TextStyle.Align.CENTER);
+            g.drawText("Score:", 100, 40, style);
+            g.drawText("" + AlienInvadersWorld.getInstance().getScore(), 100, 60, style);
+            g.drawText("Highscore:", 200, 40, style);
+            g.drawText("" + Settings.highscores[0], 200, 60, style);
+        }
+
+        private void detectCollisions() {
+            if (AlienInvadersWorld.getInstance().isShipHitAlien()) {
+                if(Settings.soundEnabled)
+                    Assets.explosion.play(1);
+            }
+
+            if (AlienInvadersWorld.getInstance().isShipProjectileHitAlien()) {
+                if(Settings.soundEnabled)
+                    Assets.laserClash.play(1);
+            }
+
+            if (AlienInvadersWorld.getInstance().isAlienProjectileHitShip()) {
+                if(Settings.soundEnabled)
+                    Assets.explosion.play(1);
+            }
+
+            AlienInvadersWorld.getInstance().isProjectilesHit();
+
+            if (AlienInvadersWorld.getInstance().isAlienProjectileHitShield()) {
+                if(Settings.soundEnabled)
+                    Assets.shieldImpact.play(1);
+            }
+
+            AlienInvadersWorld.getInstance().isShipProjectileHitShield();
         }
     }
 
