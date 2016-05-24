@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 public class AlienInvadersWorld {
+    public interface WorldListener {
+        void explosion();
+        void laserClash();
+        void shieldImpact();
+    }
+
     // Each cell is a 4x4 matrix of boxes. The reason we need cells is that ship, aliens and
     // projectiles do move across boxes.
     public static final int CELL_WIDTH = 4;
@@ -34,14 +40,23 @@ public class AlienInvadersWorld {
     private int score;
     private int timer;
 
+    // the list of aliens
     private List<Alien> aliens;
+    // the list of projectiles currently on the screen
     private List<Projectile> projectiles;
+    // the list of maximum 4 shields
     private List<Shield> shields;
-
+    // the ship
     private Ship ship;
 
     // the private static instance used to implement the Singleton pattern.
     private static AlienInvadersWorld instance = null;
+
+    public void setWorldListener(WorldListener worldListener) {
+        this.worldListener = worldListener;
+    }
+
+    private WorldListener worldListener;
 
     public List<Projectile> getProjectiles() {
         return projectiles;
@@ -125,7 +140,9 @@ public class AlienInvadersWorld {
                 }
             }
 
-            if (!ship.isAlive()) {
+            detectCollisions();
+
+            if (!ship.isAlive() || aliens.size()==0) {
                 state=GameState.GameOver;
             }
         }
@@ -147,7 +164,7 @@ public class AlienInvadersWorld {
         timer = 0;
         state = GameState.Ready;
         aliens.clear();
-        projectiles.clear();;
+        projectiles.clear();
         shields.clear();
         ship=new Ship();
         for (int i=0; i<10; ++i) {
@@ -160,23 +177,23 @@ public class AlienInvadersWorld {
 
         shields.add(new Shield(3*CELL_WIDTH, 17*CELL_HEIGHT));
         shields.add(new Shield(6*CELL_WIDTH, 17*CELL_HEIGHT));
-        shields.add(new Shield(9*CELL_WIDTH, 17*CELL_HEIGHT));
-        shields.add(new Shield(12*CELL_WIDTH, 17*CELL_HEIGHT));
+        shields.add(new Shield(9 * CELL_WIDTH, 17 * CELL_HEIGHT));
+        shields.add(new Shield(12 * CELL_WIDTH, 17 * CELL_HEIGHT));
     }
 
-    public boolean isShipHitAlien() {
+    private void detectCollisions() {
+        // Check if aliens hit the ship
         for (Iterator<Alien> itr=aliens.iterator(); itr.hasNext();) {
             Alien alien = itr.next();
             if (ship.hit(alien)) {
                 ship.kill();
                 itr.remove();
-                return true;
+                worldListener.explosion();
+                break;
             }
         }
-        return false;
-    }
 
-    public boolean isShipProjectileHitAlien() {
+        // Check if ship projectile hit an alien
         for (Iterator<Projectile> itrProjectile=projectiles.iterator(); itrProjectile.hasNext();) {
             Projectile projectile = itrProjectile.next();
             if (projectile instanceof ShipProjectile) {
@@ -186,32 +203,29 @@ public class AlienInvadersWorld {
                         score+=alien.getScore();
                         itrAlien.remove();
                         itrProjectile.remove();
-                        return true;
+                        worldListener.laserClash();
+                        break;
                     }
                 }
             }
         }
-        return false;
-    }
 
-    public boolean isAlienProjectileHitShip() {
+        // Check if alien projectile hit the ship
         for (Iterator<Projectile> itrProjectile= projectiles.iterator(); itrProjectile.hasNext();) {
             Projectile projectile = itrProjectile.next();
             if (projectile instanceof AlienProjectile) {
                 if (ship.hit(projectile)) {
                     ship.kill();
                     itrProjectile.remove();
-                    return true;
+                    worldListener.explosion();
+                    break;
                 }
             }
         }
-        return false;
-    }
 
-    public boolean isProjectilesHit() {
+        // Check if alien projectile hit a ship projectile
         Projectile alienProjectile=null;
         Projectile shipProjectile=null;
-        boolean hit=false;
         search: {
             for (Projectile projectile1 : projectiles) {
                 if (projectile1 instanceof AlienProjectile) {
@@ -221,7 +235,6 @@ public class AlienInvadersWorld {
                                 score+=10;
                                 alienProjectile=projectile1;
                                 shipProjectile=projectile2;
-                                hit=true;
                                 break search;
                             }
                         }
@@ -231,10 +244,8 @@ public class AlienInvadersWorld {
         }
         if (alienProjectile != null) projectiles.remove(alienProjectile);
         if (shipProjectile != null) projectiles.remove(shipProjectile);
-        return hit;
-    }
 
-    public boolean isAlienProjectileHitShield() {
+        // Check if an alien projectile it a shield
         for (Iterator<Projectile> itrProjectile= projectiles.iterator(); itrProjectile.hasNext();) {
             Projectile projectile = itrProjectile.next();
             if (projectile instanceof AlienProjectile) {
@@ -246,15 +257,13 @@ public class AlienInvadersWorld {
                         if (!shield.isAlive()) {
                             itrShield.remove();
                         }
-                        return true;
+                        worldListener.shieldImpact();
+                        break;
                     }
                 }
             }
         }
-        return false;
-    }
 
-    public boolean isShipProjectileHitShield() {
         for (Iterator<Projectile> itrProjectile= projectiles.iterator(); itrProjectile.hasNext();) {
             Projectile projectile = itrProjectile.next();
             if (projectile instanceof ShipProjectile) {
@@ -262,12 +271,11 @@ public class AlienInvadersWorld {
                     Shield shield = itrShield.next();
                     if (shield.hit(projectile)) {
                         itrProjectile.remove();
-                        return true;
+                        break;
                     }
                 }
             }
         }
-        return false;
     }
 
     public GameState getState() {
@@ -279,9 +287,5 @@ public class AlienInvadersWorld {
 
     public int getScore() {
         return score;
-    }
-
-    public void setScore(int score) {
-        this.score+=score;
     }
 }
