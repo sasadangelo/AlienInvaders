@@ -35,7 +35,7 @@ public class AlienInvadersWorld {
     private GameState state = GameState.Ready;
 
     // the game level
-    //private int level = 0;
+    private int level;
     // the user score
     private int score;
     private int timer;
@@ -68,6 +68,10 @@ public class AlienInvadersWorld {
         return ship;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     private AlienInvadersWorld() {
         this.aliens=new ArrayList<Alien>();
         this.projectiles=new ArrayList<Projectile>();
@@ -92,24 +96,21 @@ public class AlienInvadersWorld {
 
         if (state == GameState.Running ) {
             timer += 1;
+
+            if (ship.isExploding()) {
+                ship.exploding(deltaTime);
+                return;
+            }
+
             if ((timer % 40) == 0) {
                 for (Alien alien: aliens) {
                     alien.move();
                 }
             }
 
-            if ((timer % 60) == 0) {
-                for (Alien alien: aliens) {
-                    alien.increaseSpeed();
-                }
-            }
-
             if ((timer % 80) == 0) {
                 if (aliens.size()!=0) {
                     invasion();
-                }
-                for (Alien alien: aliens) {
-                    alien.increaseSpeed();
                 }
             }
 
@@ -142,8 +143,13 @@ public class AlienInvadersWorld {
 
             detectCollisions();
 
-            if (!ship.isAlive() || aliens.size()==0) {
+            if (!ship.isAlive()) {
                 state=GameState.GameOver;
+            }
+
+            if (aliens.size()==0) {
+                resetLevel();
+                ++level;
             }
         }
     }
@@ -162,11 +168,16 @@ public class AlienInvadersWorld {
     public void clear() {
         score = 0;
         timer = 0;
+        level=1;
         state = GameState.Ready;
+        ship=new Ship();
+        resetLevel();
+    }
+
+    public void resetLevel() {
         aliens.clear();
         projectiles.clear();
         shields.clear();
-        ship=new Ship();
         for (int i=0; i<10; ++i) {
             aliens.add(new UglyAlien(i*CELL_WIDTH + 3*CELL_WIDTH, 7*CELL_HEIGHT));
             aliens.add(new BadAlien(i*CELL_WIDTH + 3*CELL_WIDTH, 8*CELL_HEIGHT));
@@ -204,6 +215,9 @@ public class AlienInvadersWorld {
                         itrAlien.remove();
                         itrProjectile.remove();
                         worldListener.laserClash();
+                        for (Alien liveAlien: aliens) {
+                            liveAlien.increaseSpeed();
+                        }
                         break;
                     }
                 }

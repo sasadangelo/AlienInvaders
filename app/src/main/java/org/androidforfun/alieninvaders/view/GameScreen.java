@@ -224,7 +224,7 @@ public class GameScreen extends Screen {
             g.drawPixmap(Assets.buttons, pauseButtonBounds.getX(), pauseButtonBounds.getY(), 50, 100,
                     pauseButtonBounds.getWidth()+1, pauseButtonBounds.getHeight()+1); // pause button
             g.drawPixmap(Assets.buttons, leftButtonBounds.getX(), leftButtonBounds.getY(), 50, 50,
-                    leftButtonBounds.getWidth()+1, leftButtonBounds.getHeight()+1); // left button
+                    leftButtonBounds.getWidth() + 1, leftButtonBounds.getHeight() + 1); // left button
             g.drawPixmap(Assets.buttons, rightButtonBounds.getX(), rightButtonBounds.getY(), 0, 50,
                     rightButtonBounds.getWidth()+1, rightButtonBounds.getHeight()+1); // right button
             g.drawPixmap(Assets.buttons, shootButtonBounds.getX(), shootButtonBounds.getY(), 0, 200,
@@ -239,6 +239,8 @@ public class GameScreen extends Screen {
             g.drawText("" + AlienInvadersWorld.getInstance().getScore(), 100, 60, style);
             g.drawText("Highscore:", 200, 40, style);
             g.drawText("" + Settings.highscores[0], 200, 60, style);
+            g.drawText("Level:", 300, 40, style);
+            g.drawText("" + AlienInvadersWorld.getInstance().getLevel(), 300, 60, style);
         }
     }
 

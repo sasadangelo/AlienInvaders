@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Alien extends Actor {
-    private int speedX, speedY;
+    private float speedX, speedY;
     private int startX, startY;
-    private int angle;
     private String direction;
     private long lastShot;
     private ArrayList<Projectile> projectiles;
@@ -17,7 +16,6 @@ public abstract class Alien extends Actor {
         this.speedY = 2;
         this.startX = x;
         this.startY = y;
-        this.angle = 180;
         this.direction = "left";
         this.lastShot = System.currentTimeMillis() + new Random().nextInt(15);
         this.projectiles = new ArrayList<Projectile>();
@@ -64,7 +62,7 @@ public abstract class Alien extends Actor {
     }
 
     public void increaseSpeed() {
-        speedX+=0.1;
-        speedY+=0.1;
+        speedX+=(0.01*AlienInvadersWorld.getInstance().getLevel());
+        //speedY+=0.1;
     }
 }
