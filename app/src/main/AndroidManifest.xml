@@ -5,7 +5,7 @@
       android:versionName="1.0">
     <application android:icon="@drawable/icon" android:label="Droids">
         <activity android:name="org.androidforfun.alieninvaders.view.AlienInvadersGame"
-                  android:label="Droids"
+                  android:label="Alien Invaders"
                   android:configChanges="keyboard|keyboardHidden|orientation"
                   android:screenOrientation="portrait">
             <intent-filter>

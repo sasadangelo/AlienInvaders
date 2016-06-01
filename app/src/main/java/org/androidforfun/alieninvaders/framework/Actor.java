@@ -1,4 +1,6 @@
-package org.androidforfun.alieninvaders.model;
+package org.androidforfun.alieninvaders.framework;
+
+import org.androidforfun.alieninvaders.model.Rectangle;
 
 public class Actor {
 	protected int x, y;

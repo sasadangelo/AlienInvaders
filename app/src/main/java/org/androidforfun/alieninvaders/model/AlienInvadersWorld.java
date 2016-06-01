@@ -22,6 +22,8 @@ public class AlienInvadersWorld {
     // Alien Invaders world is a matrix of 64x80 boxes
     public static final int WORLD_WIDTH = MATRIX_WIDTH*CELL_WIDTH;
     public static final int WORLD_HEIGHT = MATRIC_HEIGHT*CELL_HEIGHT;
+    // Earth level: the level where ship is
+    public static final int EARTH_LEVEL = MATRIC_HEIGHT-1;
 
     // the possible game status values
     public enum GameState {
@@ -40,6 +42,8 @@ public class AlienInvadersWorld {
     private int score;
     private int timer;
 
+    // the aliens army
+    private AlienArmy alienArmy;
     // the list of aliens
     private List<Alien> aliens;
     // the list of projectiles currently on the screen
@@ -74,6 +78,7 @@ public class AlienInvadersWorld {
 
     private AlienInvadersWorld() {
         this.aliens=new ArrayList<Alien>();
+        this.alienArmy=new AlienArmy(aliens);
         this.projectiles=new ArrayList<Projectile>();
         this.shields=new ArrayList<Shield>();
         clear();
@@ -103,9 +108,10 @@ public class AlienInvadersWorld {
             }
 
             if ((timer % 40) == 0) {
-                for (Alien alien: aliens) {
-                    alien.move();
-                }
+                alienArmy.move();
+                //for (Alien alien: aliens) {
+                //    alien.move();
+                //}
             }
 
             if ((timer % 80) == 0) {
@@ -147,6 +153,11 @@ public class AlienInvadersWorld {
                 state=GameState.GameOver;
             }
 
+            // If Alien Army arrived on earth, destroy the ship and the game is over.
+            if (alienArmy.isOnEarth()) {
+                ship.destroy();
+            }
+
             if (aliens.size()==0) {
                 resetLevel();
                 ++level;
@@ -185,6 +196,7 @@ public class AlienInvadersWorld {
             aliens.add(new GoodAlien(i*CELL_WIDTH + 3*CELL_WIDTH, 10*CELL_HEIGHT));
             aliens.add(new GoodAlien(i*CELL_WIDTH + 3*CELL_WIDTH, 11*CELL_HEIGHT));
         }
+        alienArmy.update();
 
         shields.add(new Shield(3*CELL_WIDTH, 17*CELL_HEIGHT));
         shields.add(new Shield(6*CELL_WIDTH, 17*CELL_HEIGHT));
@@ -215,9 +227,10 @@ public class AlienInvadersWorld {
                         itrAlien.remove();
                         itrProjectile.remove();
                         worldListener.laserClash();
-                        for (Alien liveAlien: aliens) {
-                            liveAlien.increaseSpeed();
-                        }
+                        alienArmy.increaseSpeed();
+                        //for (Alien liveAlien: aliens) {
+                        //    liveAlien.increaseSpeed();
+                        //}
                         break;
                     }
                 }

@@ -1,5 +1,7 @@
 package org.androidforfun.alieninvaders.model;
 
+import org.androidforfun.alieninvaders.framework.Actor;
+
 public class Ship extends Actor {
     private static final long SHIP_EXPLOSION_TIME = 2;
 
@@ -16,8 +18,10 @@ public class Ship extends Actor {
     }
 
     public Ship() {
-        super(2*AlienInvadersWorld.CELL_WIDTH, 19*AlienInvadersWorld.CELL_HEIGHT,
-                AlienInvadersWorld.CELL_WIDTH+1, AlienInvadersWorld.CELL_HEIGHT);
+        super(2*AlienInvadersWorld.CELL_WIDTH,
+                AlienInvadersWorld.EARTH_LEVEL*AlienInvadersWorld.CELL_HEIGHT,
+                AlienInvadersWorld.CELL_WIDTH+1,
+                AlienInvadersWorld.CELL_HEIGHT);
         lastShot = System.currentTimeMillis();
         lives = 3;
         status=ShipState.Alive;
@@ -77,6 +81,11 @@ public class Ship extends Actor {
 
     public void kill() {
         status=ShipState.Exploding;
+    }
+
+    public void destroy() {
+        kill();
+        lives=0;
     }
 
     public int getLives() {
