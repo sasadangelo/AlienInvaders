@@ -7,10 +7,6 @@ public class ShipProjectile extends Projectile {
 
     public void move() {
         moveBy(0, -1);
-        //y -= 1;
-        //distanceTraveled += 1;
-        //if (distanceTraveled > maxDistance)
-        //    kill();
     }
 
     public boolean equals(Object object) {

@@ -78,11 +78,9 @@ public class StartScreen extends Screen {
 
     @Override
     public void resume() {
-
     }
 
     @Override
     public void dispose() {
-
     }
 }

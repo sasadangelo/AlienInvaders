@@ -2,9 +2,6 @@ package org.androidforfun.alieninvaders.model;
 
 import org.androidforfun.alieninvaders.framework.Actor;
 
-/**
- * Created by Administrator on 2/1/2016.
- */
 public abstract class Projectile extends Actor {
     protected boolean active;
 

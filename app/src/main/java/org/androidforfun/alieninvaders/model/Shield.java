@@ -1,8 +1,5 @@
 package org.androidforfun.alieninvaders.model;
 
-/**
- * Created by Administrator on 2/1/2016.
- */
 public class Shield {
     // Large shield is 8x6 boxes
     public final static int LARGE_SHIELD_WIDTH=8;
@@ -17,10 +14,6 @@ public class Shield {
     public enum ShieldSize {
         LARGE, MEDIUM, SMALL, NONE;
     }
-
-    //public final static int LARGE=0;
-    //public final static int MEDIUM=1;
-    //public final static int SMALL=2;
 
     private int x;
     private int y;
@@ -83,11 +76,5 @@ public class Shield {
 
     public boolean isAlive() {
         return size!=ShieldSize.NONE;
-    }
-
-    public void hitbox() {
-        //hitbox_x = ((@x - @image.width/2).to_i..(@x + @image.width/2.to_i)).to_a
-        //        hitbox_y = ((@y - @image.width/2).to_i..(@y + @image.width/2).to_i).to_a
-        //{:x => hitbox_x, :y => hitbox_y}
     }
 }

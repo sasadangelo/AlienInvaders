@@ -18,15 +18,10 @@ public class AlienArmy extends Actor {
         update();
     }
 
-    //public boolean hasAlien() {
-    //    return (aliens.size() > 0);
-    //}
-
     public void move() {
         if (direction.equals("left")) {
             moveLeft();
         } else {
-        //if (direction.equals("right")) {
             moveRight();
         }
     }
@@ -89,9 +84,6 @@ public class AlienArmy extends Actor {
     }
 
     public boolean isOnEarth() {
-        //if (this.y==Integer.MAX_VALUE) {
-        //    return false;
-        //}
         return (this.y+this.height)>(AlienInvadersWorld.EARTH_LEVEL*AlienInvadersWorld.CELL_HEIGHT);
     }
 
@@ -99,6 +91,5 @@ public class AlienArmy extends Actor {
         for (Alien alien: aliens) {
             alien.increaseSpeed();
         }
-        //speedX+=(0.01*AlienInvadersWorld.getInstance().getLevel());
     }
 }

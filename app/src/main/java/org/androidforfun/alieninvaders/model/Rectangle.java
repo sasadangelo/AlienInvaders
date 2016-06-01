@@ -1,7 +1,5 @@
 package org.androidforfun.alieninvaders.model;
 
-import java.io.Serializable;
-
 public class Rectangle {
 	public int x, y;
 	public int width, height;
@@ -58,7 +56,6 @@ public class Rectangle {
 	public boolean overlaps(Rectangle r) {
 		return (contains(r.x, r.y) || contains(r.x+r.width, r.y) || contains(r.x, r.y+r.width) ||
 				contains(r.x+r.width, r.y+r.width));
-		//return x < r.x + r.width && x + width > r.x && y < r.y + r.height && y + height > r.y;
 	}
 
 	public void set(Rectangle rect) {
@@ -99,5 +96,4 @@ public class Rectangle {
 	public void setHeight (int height) {
 		this.height = height;
 	}
-
 }

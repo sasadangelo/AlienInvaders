@@ -56,11 +56,11 @@ public class AlienInvadersWorld {
     // the private static instance used to implement the Singleton pattern.
     private static AlienInvadersWorld instance = null;
 
+    private WorldListener worldListener;
+
     public void setWorldListener(WorldListener worldListener) {
         this.worldListener = worldListener;
     }
-
-    private WorldListener worldListener;
 
     public List<Projectile> getProjectiles() {
         return projectiles;
@@ -109,9 +109,6 @@ public class AlienInvadersWorld {
 
             if ((timer % 40) == 0) {
                 alienArmy.move();
-                //for (Alien alien: aliens) {
-                //    alien.move();
-                //}
             }
 
             if ((timer % 80) == 0) {
