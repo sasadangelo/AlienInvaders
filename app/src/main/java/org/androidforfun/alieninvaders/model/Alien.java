@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Alien extends Actor {
-    private float speedX;
     private long lastShot;
     private ArrayList<Projectile> projectiles;
 
     public Alien(int x, int y) {
         super(x, y, AlienInvadersWorld.CELL_WIDTH, AlienInvadersWorld.CELL_HEIGHT);
-        this.speedX = 1;
         this.lastShot = System.currentTimeMillis() + new Random().nextInt(15);
         this.projectiles = new ArrayList<Projectile>();
     }
@@ -20,11 +18,11 @@ public abstract class Alien extends Actor {
     abstract public int getScore();
 
     void moveLeft() {
-        x -= Math.round(speedX);
+        x -= 1;
     }
 
     void moveRight() {
-        x += Math.round(speedX);
+        x += 1;
     }
 
     public void moveForward() {
@@ -37,9 +35,5 @@ public abstract class Alien extends Actor {
             return new AlienProjectile(x, y);
         }
         return null;
-    }
-
-    public void increaseSpeed() {
-        speedX+=(0.01*AlienInvadersWorld.getInstance().getLevel());
     }
 }

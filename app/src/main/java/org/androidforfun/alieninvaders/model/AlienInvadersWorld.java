@@ -107,9 +107,9 @@ public class AlienInvadersWorld {
                 return;
             }
 
-            if ((timer % 40) == 0) {
+            //if ((timer % 40) == 0) {
                 alienArmy.move();
-            }
+            //}
 
             if ((timer % 80) == 0) {
                 if (aliens.size()!=0) {
@@ -153,6 +153,7 @@ public class AlienInvadersWorld {
             // If Alien Army arrived on earth, destroy the ship and the game is over.
             if (alienArmy.isOnEarth()) {
                 ship.destroy();
+                worldListener.explosion();
             }
 
             if (aliens.size()==0) {
@@ -194,6 +195,7 @@ public class AlienInvadersWorld {
             aliens.add(new GoodAlien(i*CELL_WIDTH + 3*CELL_WIDTH, 11*CELL_HEIGHT));
         }
         alienArmy.update();
+        alienArmy.reset();
 
         shields.add(new Shield(3*CELL_WIDTH, 17*CELL_HEIGHT));
         shields.add(new Shield(6*CELL_WIDTH, 17*CELL_HEIGHT));
@@ -225,9 +227,6 @@ public class AlienInvadersWorld {
                         itrProjectile.remove();
                         worldListener.laserClash();
                         alienArmy.increaseSpeed();
-                        //for (Alien liveAlien: aliens) {
-                        //    liveAlien.increaseSpeed();
-                        //}
                         break;
                     }
                 }

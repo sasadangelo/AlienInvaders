@@ -9,6 +9,9 @@ public class AlienArmy extends Actor {
     private List<Alien> aliens;
     private String direction;
 
+    private int speedTickMove=50;
+    private int tick=0;
+
     public AlienArmy(List<Alien> aliens) {
         super(Integer.MAX_VALUE, Integer.MAX_VALUE);
         this.speedX = 1;
@@ -19,11 +22,15 @@ public class AlienArmy extends Actor {
     }
 
     public void move() {
-        if (direction.equals("left")) {
-            moveLeft();
-        } else {
-            moveRight();
+        if (tick>speedTickMove) {
+            if (direction.equals("left")) {
+                moveLeft();
+            } else {
+                moveRight();
+            }
+            tick=0;
         }
+        ++tick;
     }
 
     private void moveLeft() {
@@ -88,8 +95,10 @@ public class AlienArmy extends Actor {
     }
 
     public void increaseSpeed() {
-        for (Alien alien: aliens) {
-            alien.increaseSpeed();
-        }
+        speedTickMove=speedTickMove==0?0:speedTickMove-1;
+    }
+
+    public void reset() {
+        speedTickMove=50;
     }
 }
