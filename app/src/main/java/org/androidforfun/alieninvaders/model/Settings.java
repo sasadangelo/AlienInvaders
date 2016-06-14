@@ -36,7 +36,7 @@ public class Settings {
     public static void save(FileIO files) {
         BufferedWriter out = null;
         try {
-            out = new BufferedWriter(new OutputStreamWriter(files.writeFile(".droids")));
+            out = new BufferedWriter(new OutputStreamWriter(files.writeFile(".invaders")));
             out.write(Boolean.toString(soundEnabled));
             out.write("\n");
             for (int i = 0; i < 5; i++) {
