@@ -3,7 +3,7 @@ package org.androidforfun.alieninvaders.view;
 import android.util.Log;
 
 import org.androidforfun.alieninvaders.model.AlienInvadersWorld;
-import org.androidforfun.alieninvaders.model.Rectangle;
+import org.androidforfun.alieninvaders.framework.Rectangle;
 import org.androidforfun.alieninvaders.model.Settings;
 import org.androidforfun.alieninvaders.framework.Game;
 import org.androidforfun.alieninvaders.framework.Graphics;

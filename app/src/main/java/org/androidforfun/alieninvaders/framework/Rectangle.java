@@ -1,4 +1,4 @@
-package org.androidforfun.alieninvaders.model;
+package org.androidforfun.alieninvaders.framework;
 
 public class Rectangle {
 	public int x, y;
