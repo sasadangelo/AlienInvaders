@@ -1,8 +1,8 @@
 package org.androidforfun.alieninvaders.framework;
 
 public class Rectangle {
-	public int x, y;
-	public int width, height;
+	protected int x, y;
+	protected int width, height;
 
 	public Rectangle() {
 	}
