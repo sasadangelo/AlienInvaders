@@ -1,6 +1,8 @@
 package org.androidforfun.alieninvaders.model;
 
-public class Shield {
+import org.androidforfun.alieninvaders.framework.Actor;
+
+public class Shield extends Actor  {
     // Large shield is 8x6 boxes
     public final static int LARGE_SHIELD_WIDTH=8;
     public final static int LARGE_SHIELD_HEIGHT=6;
@@ -15,61 +17,32 @@ public class Shield {
         LARGE, MEDIUM, SMALL, NONE;
     }
 
-    private int x;
-    private int y;
     private boolean alive;
     private ShieldSize size;
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 
     public ShieldSize getSize() {
         return size;
     }
 
     public Shield(int x, int y) {
-        this.x = x;
-        this.y = y;
+        setBounds(x, y, LARGE_SHIELD_WIDTH, LARGE_SHIELD_HEIGHT);
         this.alive = true;
         this.size = ShieldSize.LARGE;
-    }
-
-    public boolean hit(Projectile projectile) {
-        switch(size) {
-            case LARGE:
-                if (projectile.getX()>=x && projectile.getX()<=x+LARGE_SHIELD_WIDTH &&
-                        projectile.getY()>=y && projectile.getY()<=y+LARGE_SHIELD_HEIGHT)
-                    return true;
-                return false;
-            case MEDIUM:
-                if (projectile.getX()>=x && projectile.getX()<=x+MEDIUM_SHIELD_WIDTH &&
-                        projectile.getY()>=y && projectile.getY()<=y+MEDIUM_SHIELD_HEIGHT)
-                    return true;
-                return false;
-            case SMALL:
-                if (projectile.getX()>=x && projectile.getX()<=x+SMALL_SHIELD_WIDTH &&
-                        projectile.getY()>=y && projectile.getY()<=y+SMALL_SHIELD_HEIGHT)
-                    return true;
-                return false;
-        }
-        return false;
     }
 
     public void reduce() {
         switch(size) {
             case LARGE:
                 size=ShieldSize.MEDIUM;
+                setBounds(x, y, MEDIUM_SHIELD_WIDTH, MEDIUM_SHIELD_HEIGHT);
                 break;
             case MEDIUM:
                 size=ShieldSize.SMALL;
+                setBounds(x, y, SMALL_SHIELD_WIDTH, SMALL_SHIELD_HEIGHT);
                 break;
             case SMALL:
                 size=ShieldSize.NONE;
+                setBounds(x, y, 0, 0);
                 break;
         }
     }
