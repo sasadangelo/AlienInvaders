@@ -139,7 +139,6 @@ public class AndroidGraphics implements Graphics {
         paint.setColor(style.getColor());
         paint.setTextSize(style.getTextSize());
 
-        Paint.Style androidStyle = null;
         if (style.getStyle()==TextStyle.Style.BOLD) {
             paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         } else if (style.getStyle()==TextStyle.Style.NORMAL) {
@@ -147,7 +146,7 @@ public class AndroidGraphics implements Graphics {
         } else if (style.getStyle()==TextStyle.Style.ITALIC) {
             paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.ITALIC));
         } else {
-            paint.setTextAlign(Paint.Align.LEFT);
+            paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         }
 
         Paint.Align align = null;

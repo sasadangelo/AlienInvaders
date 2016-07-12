@@ -1784,6 +1784,26 @@
          result="blur"
          id="feGaussianBlur7374" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4357"
+       id="linearGradient4680"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.78125,0,0,0.78125,-119.34077,90.84855)"
+       x1="-144.2498"
+       y1="-23.785629"
+       x2="-142.12164"
+       y2="46.925053" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4380"
+       id="linearGradient4682"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.78125,0,0,0.78125,-119.34077,90.84855)"
+       x1="-144.60335"
+       y1="-56.485897"
+       x2="-143.89622"
+       y2="-8.7561893" />
   </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
@@ -1799,7 +1819,7 @@
      id="namedview3338"
      showgrid="false"
      inkscape:zoom="2.8284271"
-     inkscape:cx="-107.17507"
+     inkscape:cx="-158.50314"
      inkscape:cy="119.24397"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -1989,6 +2009,23 @@
      d="m -436,78.500004 -64.56961,-46.880935 -63.56173,48.238596 24.63331,-75.8963547 -65.51929,-45.5442573 79.79384,-0.02559 23.06858,-76.386491 24.682,75.880534 79.77645,-1.665192 -64.53952,46.9223431 z"
      inkscape:transform-center-x="0.3568822"
      inkscape:transform-center-y="-10.068684" />
+  <g
+     id="g4583-1-8"
+     transform="translate(308,145)">
+    <circle
+       r="25"
+       cy="80"
+       cx="-233"
+       id="path4305-0-9-7"
+       style="fill:url(#linearGradient4680);fill-opacity:1" />
+    <ellipse
+       ry="16.020388"
+       rx="19.611164"
+       cy="72.959229"
+       cx="-233.14078"
+       id="path4368-9-0-7"
+       style="fill:url(#linearGradient4682);fill-opacity:1" />
+  </g>
   <g
      id="g4583"
      transform="translate(258,95)">
