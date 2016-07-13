@@ -9,7 +9,7 @@ import org.androidforfun.alieninvaders.framework.Screen;
 import org.androidforfun.alieninvaders.model.Settings;
 
 public class LoadingScreen extends Screen {
-    private static final String LOG_TAG = "Droids.LoadingScreen";
+    private static final String LOG_TAG = "Invaders.LoadingScreen";
     public LoadingScreen(Game game) {
         super(game);
     }

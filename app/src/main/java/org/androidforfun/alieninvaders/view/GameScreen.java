@@ -321,7 +321,7 @@ public class GameScreen extends Screen {
         }
 
         void draw() {
-            Log.i(LOG_TAG, "drawGameOverUI -- begin");
+            Log.i(LOG_TAG, "draw -- begin");
             Graphics g = game.getGraphics();
             g.drawPixmap(Assets.gameoverscreen, 0, 0);
             g.drawPixmap(Assets.buttons, xButtonBounds.getX(), xButtonBounds.getY(), 0, 100,
