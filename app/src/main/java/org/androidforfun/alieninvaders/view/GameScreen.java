@@ -2,14 +2,14 @@ package org.androidforfun.alieninvaders.view;
 
 import android.util.Log;
 
-import org.androidforfun.alieninvaders.model.AlienInvadersWorld;
-import org.androidforfun.alieninvaders.framework.Rectangle;
+import org.androidforfun.framework.Game;
+import org.androidforfun.framework.Graphics;
+import org.androidforfun.framework.Input.TouchEvent;
+import org.androidforfun.framework.Rectangle;
+import org.androidforfun.framework.Screen;
+import org.androidforfun.framework.TextStyle;
 import org.androidforfun.alieninvaders.model.Settings;
-import org.androidforfun.alieninvaders.framework.Game;
-import org.androidforfun.alieninvaders.framework.Graphics;
-import org.androidforfun.alieninvaders.framework.Input.TouchEvent;
-import org.androidforfun.alieninvaders.framework.Screen;
-import org.androidforfun.alieninvaders.framework.TextStyle;
+import org.androidforfun.alieninvaders.model.AlienInvadersWorld;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -31,7 +31,7 @@ public class GameScreen extends Screen {
     private Rectangle shootButtonBounds;
     private Rectangle xButtonBounds;
     private Rectangle resumeMenuBounds;
-    private Rectangle quitMenuBounds;
+    private Rectangle homeMenuBounds;
 
     private AlienInvadersWorldRenderer renderer;
 
@@ -50,7 +50,7 @@ public class GameScreen extends Screen {
         rightButtonBounds=new Rectangle(100, 425, 50, 50);
         shootButtonBounds=new Rectangle(240, 425, 50, 50);
         resumeMenuBounds=new Rectangle(80, 100, 160, 48);
-        quitMenuBounds=new Rectangle(80, 148, 160, 48);
+        homeMenuBounds=new Rectangle(80, 148, 160, 48);
         xButtonBounds=new Rectangle(128, 200, 50, 50);
 
         renderer = new AlienInvadersWorldRenderer(game.getGraphics());
@@ -257,7 +257,7 @@ public class GameScreen extends Screen {
                         AlienInvadersWorld.getInstance().setState(AlienInvadersWorld.GameState.Running);
                         return;
                     }
-                    if (quitMenuBounds.contains(event.x, event.y)) {
+                    if(homeMenuBounds.contains(event.x, event.y)) {
                         if(Settings.soundEnabled)
                             Assets.click.play(1);
                         game.setScreen(new StartScreen(game));

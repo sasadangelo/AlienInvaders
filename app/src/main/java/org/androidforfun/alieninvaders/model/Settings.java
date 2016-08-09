@@ -1,6 +1,6 @@
 package org.androidforfun.alieninvaders.model;
 
-import org.androidforfun.alieninvaders.framework.FileIO;
+import org.androidforfun.framework.FileIO;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,15 +20,14 @@ public class Settings {
             for (int i = 0; i < 5; i++) {
                 highscores[i] = Integer.parseInt(in.readLine());
             }
-        } catch (IOException e) {
-            // :( It's ok we have defaults
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             // :/ It's ok, defaults save our day
         } finally {
             try {
                 if (in != null)
                     in.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -44,11 +43,13 @@ public class Settings {
                 out.write("\n");
             }
         } catch (IOException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (out != null)
                     out.close();
             } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

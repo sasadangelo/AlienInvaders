@@ -1,7 +1,7 @@
 package org.androidforfun.alieninvaders.view;
 
-import org.androidforfun.alieninvaders.framework.Screen;
-import org.androidforfun.alieninvaders.framework.impl.AndroidGame;
+import org.androidforfun.framework.Screen;
+import org.androidforfun.framework.impl.AndroidGame;
 
 public class AlienInvadersGame extends AndroidGame {
     @Override

@@ -1,6 +1,6 @@
 package org.androidforfun.alieninvaders.model;
 
-import org.androidforfun.alieninvaders.framework.Actor;
+import org.androidforfun.framework.Actor;
 
 public class Ship extends Actor {
     private static final long SHIP_EXPLOSION_TIME = 2;

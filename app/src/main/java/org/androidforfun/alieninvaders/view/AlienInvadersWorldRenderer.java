@@ -1,7 +1,7 @@
 package org.androidforfun.alieninvaders.view;
 
-import org.androidforfun.alieninvaders.framework.Graphics;
-import org.androidforfun.alieninvaders.framework.Pixmap;
+import org.androidforfun.framework.Graphics;
+import org.androidforfun.framework.Pixmap;
 import org.androidforfun.alieninvaders.model.Alien;
 import org.androidforfun.alieninvaders.model.AlienInvadersWorld;
 import org.androidforfun.alieninvaders.model.BadAlien;

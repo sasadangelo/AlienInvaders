@@ -1,11 +1,11 @@
 package org.androidforfun.alieninvaders.view;
 
-import org.androidforfun.alieninvaders.framework.Music;
-import org.androidforfun.alieninvaders.framework.Pixmap;
-import org.androidforfun.alieninvaders.framework.Sound;
+import org.androidforfun.framework.Music;
+import org.androidforfun.framework.Pixmap;
+import org.androidforfun.framework.Sound;
 
 /*
- This class contains the global references to all the assets used in AlienInvadersWorld game.
+ This class contains the global references to all the assets used in AlienInvadersGame game.
  */
 public class Assets {
     // the logo asset

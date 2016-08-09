@@ -1,6 +1,6 @@
 package org.androidforfun.alieninvaders.model;
 
-import org.androidforfun.alieninvaders.framework.Rectangle;
+import org.androidforfun.framework.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Iterator;

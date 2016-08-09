@@ -1,6 +1,6 @@
 package org.androidforfun.alieninvaders.model;
 
-import org.androidforfun.alieninvaders.framework.Actor;
+import org.androidforfun.framework.Actor;
 
 public class Shield extends Actor  {
     // Large shield is 8x6 boxes

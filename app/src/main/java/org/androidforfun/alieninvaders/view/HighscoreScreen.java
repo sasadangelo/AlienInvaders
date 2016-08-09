@@ -1,11 +1,11 @@
 package org.androidforfun.alieninvaders.view;
 
-import org.androidforfun.alieninvaders.framework.Rectangle;
+import org.androidforfun.framework.Rectangle;
 import org.androidforfun.alieninvaders.model.Settings;
-import org.androidforfun.alieninvaders.framework.Game;
-import org.androidforfun.alieninvaders.framework.Graphics;
-import org.androidforfun.alieninvaders.framework.Input.TouchEvent;
-import org.androidforfun.alieninvaders.framework.Screen;
+import org.androidforfun.framework.Game;
+import org.androidforfun.framework.Graphics;
+import org.androidforfun.framework.Input.TouchEvent;
+import org.androidforfun.framework.Screen;
 
 import java.util.List;
 

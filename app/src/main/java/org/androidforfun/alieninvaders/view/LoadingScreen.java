@@ -1,11 +1,10 @@
 package org.androidforfun.alieninvaders.view;
 
 import android.util.Log;
-
-import org.androidforfun.alieninvaders.framework.Game;
-import org.androidforfun.alieninvaders.framework.Graphics;
-import org.androidforfun.alieninvaders.framework.Graphics.PixmapFormat;
-import org.androidforfun.alieninvaders.framework.Screen;
+import org.androidforfun.framework.Game;
+import org.androidforfun.framework.Graphics;
+import org.androidforfun.framework.Graphics.PixmapFormat;
+import org.androidforfun.framework.Screen;
 import org.androidforfun.alieninvaders.model.Settings;
 
 public class LoadingScreen extends Screen {
