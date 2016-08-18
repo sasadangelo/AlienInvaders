@@ -79,10 +79,10 @@ public class AlienInvadersWorld {
     }
 
     private AlienInvadersWorld() {
-        this.aliens=new ArrayList<Alien>();
+        this.aliens=new ArrayList<>();
         this.alienArmy=new AlienArmy(aliens);
-        this.projectiles=new ArrayList<Projectile>();
-        this.shields=new ArrayList<Shield>();
+        this.projectiles=new ArrayList<>();
+        this.shields=new ArrayList<>();
         clear();
     }
 
@@ -209,7 +209,7 @@ public class AlienInvadersWorld {
         // Check if aliens hit the ship
         for (Iterator<Alien> itr=aliens.iterator(); itr.hasNext();) {
             Alien alien = itr.next();
-            if (ship.hit(alien)) {
+            if (ship.collide(alien)) {
                 ship.kill();
                 itr.remove();
                 worldListener.explosion();
@@ -223,7 +223,7 @@ public class AlienInvadersWorld {
             if (projectile instanceof ShipProjectile) {
                 for (Iterator<Alien> itrAlien= aliens.iterator(); itrAlien.hasNext();) {
                     Alien alien = itrAlien.next();
-                    if (alien.hit(projectile)) {
+                    if (alien.collide(projectile)) {
                         score+=alien.getScore();
                         itrAlien.remove();
                         itrProjectile.remove();
@@ -239,7 +239,7 @@ public class AlienInvadersWorld {
         for (Iterator<Projectile> itrProjectile= projectiles.iterator(); itrProjectile.hasNext();) {
             Projectile projectile = itrProjectile.next();
             if (projectile instanceof AlienProjectile) {
-                if (ship.hit(projectile)) {
+                if (ship.collide(projectile)) {
                     ship.kill();
                     itrProjectile.remove();
                     worldListener.explosion();
@@ -256,7 +256,7 @@ public class AlienInvadersWorld {
                 if (projectile1 instanceof AlienProjectile) {
                     for (Projectile projectile2 : projectiles) {
                         if (projectile2 instanceof ShipProjectile) {
-                            if (projectile1.hit(projectile2)) {
+                            if (projectile1.collide(projectile2)) {
                                 score+=10;
                                 alienProjectile=projectile1;
                                 shipProjectile=projectile2;
@@ -276,7 +276,7 @@ public class AlienInvadersWorld {
             if (projectile instanceof AlienProjectile) {
                 for (Iterator<Shield> itrShield= shields.iterator(); itrShield.hasNext();) {
                     Shield shield = itrShield.next();
-                    if (shield.hit(projectile)) {
+                    if (shield.collide(projectile)) {
                         itrProjectile.remove();
                         shield.reduce();
                         if (!shield.isAlive()) {
@@ -294,7 +294,7 @@ public class AlienInvadersWorld {
             if (projectile instanceof ShipProjectile) {
                 for (Iterator<Shield> itrShield= shields.iterator(); itrShield.hasNext();) {
                     Shield shield = itrShield.next();
-                    if (shield.hit(projectile)) {
+                    if (shield.collide(projectile)) {
                         itrProjectile.remove();
                         break;
                     }

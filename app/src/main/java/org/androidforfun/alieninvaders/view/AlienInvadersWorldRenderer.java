@@ -1,5 +1,22 @@
+/*
+ *  Copyright (C) 2016 Salvatore D'Angelo
+ *  This file is part of Alien Invaders project.
+ *
+ *  Alien Invaders is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Alien Invaders is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License.
+ */
 package org.androidforfun.alieninvaders.view;
 
+import org.androidforfun.framework.Gdx;
 import org.androidforfun.framework.Graphics;
 import org.androidforfun.framework.Pixmap;
 import org.androidforfun.alieninvaders.model.Alien;
@@ -12,6 +29,11 @@ import org.androidforfun.alieninvaders.model.Ship;
 import org.androidforfun.alieninvaders.model.ShipProjectile;
 import org.androidforfun.alieninvaders.model.UglyAlien;
 
+/*
+ * The responsibility of this class is to draw the model representation of Alien Invaders world.
+ *
+ * @author Salvatore D'Angelo
+ */
 public class AlienInvadersWorldRenderer {
     // Each cell is a 4x4 matrix. The reason we need cells is that ship and aliens do move across a
     // cells requires 4 steps in horizontal and 4 in vertical.
@@ -25,20 +47,22 @@ public class AlienInvadersWorldRenderer {
     private Pixmap alienBad;
     private Pixmap alienUgly;
 
-    private Graphics g;
 
-    public AlienInvadersWorldRenderer(Graphics graphics) {
+    public AlienInvadersWorldRenderer() {
         alienGood = Assets.alienGood1;
         alienBad = Assets.alienBad1;
         alienUgly = Assets.alienUgly1;
-        g=graphics;
     }
 
+    /*
+     This method draw the model representation of Droids world.
+     */
     public void draw() {
         AlienInvadersWorld world = AlienInvadersWorld.getInstance();
+        Graphics g = Gdx.graphics;
 
         Ship ship = world.getShip();
-        g.drawPixmap(Assets.ship, ship.getX() * CELL_WIDTH_PIXEL, ship.getY() * CELL_HEIGHT_PIXEL);
+        Gdx.graphics.drawPixmap(Assets.ship, ship.getX() * CELL_WIDTH_PIXEL, ship.getY() * CELL_HEIGHT_PIXEL);
 
         for (Shield shield : AlienInvadersWorld.getInstance().getShields()) {
             if (shield.getSize().equals(Shield.ShieldSize.LARGE)) {
