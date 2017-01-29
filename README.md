@@ -14,7 +14,7 @@ In the game there is no the upper spacecraft to hit as a bonus as in the origina
 
 # Credits
 
-The original author of the framework code, later modified by me, is [Mario Zachner](https://github.com/badlogic) (@badlogic) that released the code with GPL3 license as a resource of the Beginning Android Games book. The framework is a very simplified version of the open source library Libgdx, released by Mario Zachner with GPL3 license. Graphic assets and some simplifications comes from the open source project written in Ruby rubyinvaders by [Robert Alexander Leon](https://github.com/llexileon) (@llexileon).
+The original author of the framework code, later modified by me, is [Mario Zachner](https://github.com/badlogic) (@badlogic) that released the code with GPL3 license as a resource of the Beginning Android Games book. The framework is a very simplified version of the open source library Libgdx, released by Mario Zachner with GPL3 license. Graphic assets and some simplifications comes from the open source project [rubyinvaders](https://github.com/llexileon/rubyinvaders) written in Ruby by [Robert Alexander Leon](https://github.com/llexileon) (@llexileon).
 
 # License
 [GPL3](https://www.gnu.org/licenses/gpl-3.0.en.html)
