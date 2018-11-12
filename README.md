@@ -8,6 +8,9 @@ This game has been created only for educational purpose, it has no claim to be a
 
 ![Main Menu](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders_Home.png) ![Game](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders.png)
 
+# Video Demo
+[![Video Demo](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/AlienInvaders_Video.png)](https://www.youtube.com/watch?v=C8KQJOkNzsU "Video Demo")
+
 # Limitations
 
 In the game there is no the upper spacecraft to hit as a bonus as in the original game. The game also has an infinite theoretical life.
