@@ -6,7 +6,7 @@ This game has been created only for educational purpose, it has no claim to be a
 
 # Screenshots
 
-![Main Menu](http://www.androidforfun.it/wp-content/uploads/2016/12/Screenshot_Alien_Invaders_Home.png) ![Game](http://www.androidforfun.it/wp-content/uploads/2016/12/Screenshot_Alien_Invaders.png)
+![Main Menu](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders_Home.png) ![Game](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders.png)
 
 # Limitations
 
