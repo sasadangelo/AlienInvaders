@@ -25,7 +25,7 @@ The original author of the framework code, later modified by me, is [Mario Zachn
 
 # How to run the source code
 
-Download and install [Android Studio](https://developer.android.com/studio/index.html). To do that accept all the default settings the installation procedure show you. If you already have Android Studio installed, make sure it is at the latest level. Once Android Studio is up and running make sure all projects are closed (if a project is open do File->Close Project), the "Welcome to Android Studio" Panel appears. Select the option "Check out project from version control" and then GitHub. 
+Download and install [Android Studio](https://developer.android.com/studio/index.html). To do that accept all the default settings the installation procedure show you. If you already have Android Studio installed, make sure it is at the latest level. Once Android Studio is up and running make sure all projects are closed (if a project is open do File->Close Project), the "Welcome to Android Studio" Panel appears. Select the option "Check out project from version control" and then GitHub.
 
 Fill the following fields:
 
