@@ -1,12 +1,15 @@
 # Alien Invaders
 
-Alien Invaders is a simplified clone of Space Invaders. A spacecraft must defend the earth from an alien attack. The army alien consists of 3 categories of aliens: ugly, bad and good. The spacecraft must destroy the alien army without getting hit and keep her from arriving on Earth. The only defense for the spacecraft are 4 blocks behind which it can shelter from the aliens bullets. For each alien kill the player will get a score. The aliens move in block from left to right and vice versa, and every time they touch a margin, they advance. The player advances to level when he kills all the aliens. At each new level the speed of the aliens increases, thus increasing the difficulty of the game.
+Alien Invaders is a Space Invaders clone for Android. A spacecraft must defend the earth from an alien attack. The army alien consists of 3 categories of aliens: ugly, bad and good. The spacecraft must destroy the alien army without getting hit and keep her from arriving on Earth. The only defense for the spacecraft are 4 blocks behind which it can shelter from the aliens bullets. For each alien kill the player will get a score. The aliens move in block from left to right and vice versa, and every time they touch a margin, they advance. The player advances to level when he kills all the aliens. At each new level the speed of the aliens increases, thus increasing the difficulty of the game.
 
 This game has been created only for educational purpose, it has no claim to be a complete game distributable through the Android market. It's my belief that you can get inspiration from this source code to implement your own video games.
 
 # Screenshots
 
-![Main Menu](http://www.androidforfun.it/wp-content/uploads/2016/12/Screenshot_Alien_Invaders_Home.png) ![Game](http://www.androidforfun.it/wp-content/uploads/2016/12/Screenshot_Alien_Invaders.png)
+![Main Menu](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders_Home.png) ![Game](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/Screenshot_Alien_Invaders.png)
+
+# Video Demo
+[![Video Demo](https://raw.githubusercontent.com/wiki/sasadangelo/AlienInvaders/img/AlienInvaders_Video.png)](https://www.youtube.com/watch?v=C8KQJOkNzsU "Video Demo")
 
 # Limitations
 
@@ -23,9 +26,9 @@ The original author of the framework code, later modified by me, is [Mario Zachn
 
 [Droids](https://github.com/sasadangelo/Droids), [Mr Snake](https://github.com/sasadangelo/MrSnake)
 
-# How to run the source code
+# Installation & Run
 
-Download and install [Android Studio](https://developer.android.com/studio/index.html). To do that accept all the default settings the installation procedure show you. If you already have Android Studio installed, make sure it is at the latest level. Once Android Studio is up and running make sure all projects are closed (if a project is open do File->Close Project), the "Welcome to Android Studio" Panel appears. Select the option "Check out project from version control" and then GitHub.
+[Download and install Android Studio](http://code4projects.altervista.org/how-to-install-android-studio/). If you already have Android Studio installed, make sure it is at the latest level. Once Android Studio is up and running make sure all projects are closed (if a project is open do File->Close Project), the "Welcome to Android Studio" Panel appears. Select the option "Check out project from version control" and then GitHub. 
 
 Fill the following fields:
 
@@ -33,7 +36,7 @@ Fill the following fields:
     Parent Directory: <an empty directory previously created>
     Directory Name: AlienInvaders
 
-The source code will be downloaded and the AlienInvaders project will be created. Now you can run the code doing Run->Run. You can execute the code on Physical or Virtual device. For more details you can read the last section of the following [article](http://www.androidforfun.it/crea-la-tua-prima-app-android/). It is in italian but you can translate it with Google Translator.
+The source code will be downloaded and the AlienInvaders project will be created. Now you can run the code doing Run->Run. You can execute the code on Physical or Virtual device. For more details you can read the last section of the following [article](http://code4projects.altervista.org/how-to-create-an-android-application/). 
 
 # Troubleshooting
 
